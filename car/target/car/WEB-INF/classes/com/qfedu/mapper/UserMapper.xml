@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.dao.UserDao">
+    <select id="findByTel" parameterType="string" resultType="com.qfedu.entity.User">
+        select * from sys_user where tel=#{tel}
+    </select>
+    <insert id="register" parameterType="com.qfedu.entity.User">
+        insert into sys_user(
+        <trim suffixOverrides=",">
+            <if test="tel !=null">
+                tel,
+            </if>
+            <if test="password !=null">
+                password,
+            </if>
+            <if test="email !=null">
+                email,
+            </if>
+            <if test="invitation !=null">
+                invitation,
+            </if>
+        </trim>
+        ) values (
+        <trim suffixOverrides=",">
+            <trim suffixOverrides=",">
+                <if test="tel !=null">
+                    #{tel},
+                </if>
+                <if test="password !=null">
+                    #{password},
+                </if>
+                <if test="email !=null">
+                    #{email},
+                </if>
+                <if test="invitation !=null">
+                    #{invitation},
+                </if>
+            </trim>
+        </trim>
+        )
+    </insert>
+
+
+
+</mapper>
